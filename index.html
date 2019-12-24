@@ -38,6 +38,7 @@
 </div>
 <!-- preloaders end -->
 <div id="header"></div>
+
 <!-- 主体 -->
 <main>
     <!--轮播图-->
@@ -139,13 +140,13 @@
             <img src="{{item.thumb}}" alt="">
         </div>
         <!--<div class="tuijian-name">-->
-            <!--{{item.title}}-->
+        <!--{{item.title}}-->
         <!--</div>-->
         <p class="tuijian-name-prize">
             {{item.template_name}}
         </p>
         <!--<p class="tuijian-praise">-->
-            <!--{{item.title}}-->
+        <!--{{item.title}}-->
         <!--</p>-->
     </div>
     {{#  }); }}
@@ -190,100 +191,102 @@
 <script src="assets/utils/apiconfig.js"></script>
 <script src="assets/js/index/index.js"></script>
 <script>
-    //获取图片轮播图
-    $.ajax({
-        url: urls.getLunbo,
-        type: 'POST',
-        data: {},
-        dataType: 'JSON',
-        contentType: 'application/x-www-form-urlencoded',
-        success: function (res) {
-            if (res.code === 1) {
-                var b = '';
-                for (var i = 0; i < res.data.length; i++) {
-                    b += `<div class="swiper-slide">
+    $(function ($) {
+        //获取图片轮播图
+        $.ajax({
+            url: urls.getLunbo,
+            type: 'POST',
+            data: {},
+            dataType: 'JSON',
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (res) {
+                if (res.code === 1) {
+                    var b = '';
+                    for (var i = 0; i < res.data.length; i++) {
+                        b += `<div class="swiper-slide">
                             <div class="full preload middle">
                                 <img src="${res.data[i].url}" id="${res.data[i].id}" value="${res.data[i].type}">
                             </div>
                         </div>`;
-                }
-                $('.swiper-container .swiper-wrapper').html(b);
-                var swiper = new Swiper('.swiper-container', {
-                    effect: 'fade',/*'fade'cube'flip*/
-                    fadeEffect: {/*逐渐变小*/
-                        crossFade: true,
-                    },
-                    observer: true,
-                    observerParent: true,
-                    autoHeight: true, //高度随内容变化
-                    roundLengths: true,
-                    setWrapperSize: true,
-                    speed: 1000,
-                    grabCursor: true,/*变手*/
-                    autoplay: {
-                        delay: 3000
-                    },
-                    loop: true,
-                    height: 500,
-                    lazy: {
-                        loadPrevNext: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    pagination: {
-                        el: '.swiper-pagination',
-                    },
-                });
-                //点击图片跳转
-                $(".swiper-wrapper").on("click", '.swiper-slide', function (e) {
-                    var typeLocal = e.target.attributes.value.value
-                    var ids = e.target.id;
-                        if(typeLocal == 0 || typeLocal == 3){
+                    }
+                    $('.swiper-container .swiper-wrapper').html(b);
+                    var swiper = new Swiper('.swiper-container', {
+                        effect: 'fade',/*'fade'cube'flip*/
+                        fadeEffect: {/*逐渐变小*/
+                            crossFade: true,
+                        },
+                        observer: true,
+                        observerParent: true,
+                        autoHeight: true, //高度随内容变化
+                        roundLengths: true,
+                        setWrapperSize: true,
+                        speed: 1000,
+                        grabCursor: true,/*变手*/
+                        autoplay: {
+                            delay: 3000
+                        },
+                        loop: true,
+                        height: 500,
+                        lazy: {
+                            loadPrevNext: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+                    });
+                    //点击图片跳转
+                    $(".swiper-wrapper").on("click", '.swiper-slide', function (e) {
+                        var typeLocal = e.target.attributes.value.value
+                        var ids = e.target.id;
+                        if (typeLocal == 0 || typeLocal == 3) {
                             location.href = `reportDetails.html?id=${ids}`
-                        }else if (typeLocal == 1){
+                        } else if (typeLocal == 1) {
                             location.href = `productDetails.html?id=${ids}`
-                        } else if (typeLocal == 2){
+                        } else if (typeLocal == 2) {
                             location.href = `templateDetails.html?id=${ids}`
-                        }else{
+                        } else {
                             return
                         }
-                })
+                    })
+                }
+            }
+        })
+        $(window).resize(function () {
+            homeResize();
+        });
+        homeResize();
+
+        function homeResize() {
+
+            WinHeight = $(window).height();
+            WinWidth = $(window).width();
+            fullBox = $(".swiper-slide .full");
+
+            if (WinWidth > 768) {
+                if (WinWidth / WinHeight > 1.6) {
+                    fullBox.width("100%").height(WinWidth * 0.625).css({
+                        "position": 'absolute',
+                        "left": "0px",
+                        "top": (WinHeight - fullBox.height()) / 2 + "px"
+                    });
+                } else {
+                    fullBox.width(WinHeight * 1.6).height("100%").css({
+                        "position": 'absolute',
+                        "left": "-" + (fullBox.width() - WinWidth) / 2 + "px",
+                        "top": "0px"
+                    });
+                }
+            } else {
+                fullBox.width("100%").height("auto").css({
+                    "position": 'static',
+                });
             }
         }
     })
-    $(window).resize(function () {
-        homeResize();
-    });
-    homeResize();
-
-    function homeResize() {
-
-        WinHeight = $(window).height();
-        WinWidth = $(window).width();
-        fullBox = $(".swiper-slide .full");
-
-        if (WinWidth > 768) {
-            if (WinWidth / WinHeight > 1.6) {
-                fullBox.width("100%").height(WinWidth * 0.625).css({
-                    "position": 'absolute',
-                    "left": "0px",
-                    "top": (WinHeight - fullBox.height()) / 2 + "px"
-                });
-            } else {
-                fullBox.width(WinHeight * 1.6).height("100%").css({
-                    "position": 'absolute',
-                    "left": "-" + (fullBox.width() - WinWidth) / 2 + "px",
-                    "top": "0px"
-                });
-            }
-        } else {
-            fullBox.width("100%").height("auto").css({
-                "position": 'static',
-            });
-        }
-    }
 </script>
 </body>
 

@@ -1,11 +1,10 @@
 var lengthList,lengthList1
-$(function () {
-    $("#header").load("common/header.html")
-    $("#footer").load("common/footer.html")
-
+$(function ($) {
     layui.use(['laytpl', 'layer', 'carousel'], function () {
         var layer = layui.layer
         var laytpl = layui.laytpl
+        $("#header").load("common/header.html")
+        $("#footer").load("common/footer.html")
         productFuntion(laytpl)
         templateFunction(laytpl)
         reportFuntion(laytpl)
@@ -14,9 +13,7 @@ $(function () {
         goreportDetailsFunction()
         templatelook()
         productlook()
-
     })
-
 })
 
 //产品展示左右切换

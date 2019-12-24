@@ -190,6 +190,7 @@ $(function () {
                 elem: 'pageNav'
                 , count: 10
                 , curr: page
+                ,theme:'#000'
                 , layout: ['prev', 'page', 'next']
                 , jump: function (obj) {
                     page = obj.curr;

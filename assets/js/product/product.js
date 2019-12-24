@@ -45,12 +45,13 @@ $(function () {
                 }
             })
         }
-
+        /*分页*/
         function ajaxPage(page, idList) {
             laypage.render({
                 elem: 'pageNav'
                 , count: 10
                 , curr: page
+                ,theme:'#000'
                 , layout: ['prev', 'page', 'next']
                 , jump: function (obj) {
                     page = obj.curr;

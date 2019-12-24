@@ -34,28 +34,27 @@
 .zuoyou,.zuoyouTemplate {
     width: 75px;
     height: 40px;
-    background-color: #ff60a3;
     position: absolute;
     top: 100%;
     right: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: #fff;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 3px;
+    border:1px solid #f5f5f5;
 }
 
 .zuoyou:hover,.zuoyouTemplate:hover {
     background-color: #fff;
     color: #000;
-    border: 2px solid #ff60a3
+    border: 3px solid #ff60a3;
 }
-
-.zuoyou .hot {
-    color: #ff6700;
+.zuoyou i:hover,.zuoyouTemplate i:hover,
+.zuoyou li:hover,.zuoyouTemplate li:hover{
+    color: #ff60a3;
+    font-weight: 700;
 }
-
 .tuijianBox,.tuijianBoxTemplate {
     width: 4960px;
     height: 300px;
@@ -64,16 +63,20 @@
     top: 0;
     transition: all 1s;
     margin-left: 5px;
+    align-items: center;
+    display: flex;
 }
 
 .tuijian-box {
     width: 234px;
-    height: 300px;
+    height: 280px;
     background: #ffffff;
     overflow: hidden;
     float: left;
     margin-right: 14px;
     cursor: pointer;
+    border: 1px solid #f5f5f5;
+    border-radius: 3px;
 }
 
 .tuijian-box:hover {
@@ -132,9 +135,12 @@
     background: #ffffff;
     float: left;
     margin:0 14px 14px 0;
+    border: 1px solid #f5f5f5;
+    border-radius: 3px;
 }
 
 .viedo-box:hover {
+    cursor: pointer;
     transform: translate(0, -5px);
     box-shadow: 3px 3px 10px 5px #e0e0e0;
     transition: all 0.5s;
@@ -331,37 +337,44 @@
 }
 .option-list{
     display: flex;
-    align-items: center;
+    justify-content: flex-start;
     margin-top: 10px;
 }
 .option-list > span {
+    display: inline-block;
+    height: 43px;
     font-size: 16px;
     font-weight: 700;
     padding: 10px 40px;
+    box-sizing: border-box;
     color: #fff;
-    /*background: #88BA3D;*/
     background: #000;
     margin-right: 30px;
+    white-space: nowrap;
+    text-align: center;
 }
 .option-list ul .layui-tpl{
+    width: auto;
     display: flex;
+    flex-wrap: wrap;
+
 }
 .option-list ul li.selection{
     background: #fff;
 }
-.option-list ul li.selection > a{
-    color: #88BA3D
-}
 .option-list ul li {
+    white-space: nowrap;
     cursor:pointer;
-    padding: 6px 26px;
+    padding: 9px 26px;
     font-size: 16px;
-    border: 1px solid #000;
-    margin-right: 16px;
+    border: 2px solid #f5f5f5;
+    border-radius: 3px;
+    margin: 0 16px 8px 0;
+    box-sizing: border-box;
 }
 .option-list ul li:hover{
-    background-color: rgb(255,39,130);
-    color:#fff;
+    box-sizing: border-box;
+    border: 2px solid rgb(255,39,130);
 }
 .option-list ul li a{
     color: #000;
