@@ -1,0 +1,56 @@
+<footer>
+    <div class="end-box">
+        <!--<div class="end-box-write">-->
+        <!--<div class="end-box-write-left">-->
+        <!--<span>联系人</span><span></span>-->
+        <!--</div>-->
+        <!--<div class="end-box-write-right">-->
+        <!--<span>联系电话</span><span></span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div>
+            <img src="" alt="二维码">
+        </div>
+        <div>
+            <p class="end-box-tow-wow">
+                <span>联系人 </span><span>xxx</span>
+            </p>
+            <p class="end-box-tow-wow">
+                <span>联系电话 </span><span>xxxxxxxxxxx</span>
+            </p>
+            <p class="end-box-tow-wow">
+                <span>联系地址 </span><span>xxx xxx xxx</span>
+            </p>
+        </div>
+    </div>
+</footer>
+<script>
+    $(function () {
+        //    底部数据
+       // var urls = JSON.parse(JSON.stringify(urls))
+        $.ajax({
+            url: urls.getContact,
+            type: 'POST',
+            data: {},
+            dataType: 'JSON',
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (res) {
+                if (res.code === 1) {
+                    var text = ''
+                    text = `<div><img src="${res.data.erweima}" alt=""></div>
+                            <div><p class="end-box-tow-wow">
+                                <span>联系人 </span><span>${res.data.name}</span>
+                            </p>
+                            <p class="end-box-tow-wow">
+                                <span>联系电话 </span><span>${res.data.mobile}</span>
+                            </p>
+                            <p class="end-box-tow-wow">
+                                <span>联系地址 </span><span>${res.data.address}</span>
+                            </p></div>`
+                    $(".end-box").html(text)
+                }
+
+            }
+        })
+    })
+</script>

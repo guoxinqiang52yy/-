@@ -1,0 +1,290 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>基卡特拍 | 首页</title>
+    <meta name="keywords" content="Corporate Business Shopse HTML5 Css3 Template App Product"/>
+    <meta name="description" content="Apork - Product Landing HTML5 Template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/scrolltop.css">
+    <link rel="stylesheet" href="assets/css/default.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/swiper/index.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1065039_nf6ti5m8z8h.css">
+</head>
+
+<body>
+
+<!--[if lte ie 9]>
+<p class="browserupgrade">you are using an <strong>outdated</strong> browser. please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- preloaders start -->
+<div class="preloader">
+    <div class="loader">Loading...</div>
+</div>
+<!-- preloaders end -->
+<div id="header"></div>
+<!-- 主体 -->
+<main>
+    <!--轮播图-->
+    <div class="swiper-container" style="height: 700px;">
+        <div class="swiper-wrapper">
+            <!--模板字符串b-->
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev swiper-button-white"></div><!--左箭头-->
+        <div class="swiper-button-next swiper-button-white"></div><!--右箭头-->
+    </div>
+    <!-- 产品展示 -->
+    <div class="jd-hd mt-50">
+        <div class="row" style="margin-right: 0;">
+            <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
+                <div class="section-title text-center mt-50 mb-50">
+                    <h3>产品展示</h3>
+                </div>
+            </div>
+        </div>
+        <!--左右箭头-->
+        <div class="zuoyou">
+            <i class="iconfont icon-fanhuizuojiantouxiangzuoshangyibuxianxing"></i>
+            <li class="iconfont icon-tiaozhuanqianwangyoujiantouxiangyouxiayibuxianxing"></li>
+        </div>
+    </div>
+    <div class="tuijian">
+        <div class="tuijianBox">
+            <!--产品模板引擎插入-->
+            <div class="layui-tpl" id="viewProduct"></div>
+        </div>
+    </div>
+
+    <!-- 模板展示 -->
+    <div class="jd-hd mt-50">
+        <div class="row" style="margin-right: 0;">
+            <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
+                <div class="section-title text-center mt-50 mb-50">
+                    <h3>模板展示</h3>
+                </div>
+            </div>
+            <!--左右箭头-->
+            <div class="zuoyouTemplate">
+                <i class="iconfont icon-fanhuizuojiantouxiangzuoshangyibuxianxing"></i>
+                <li class="iconfont icon-tiaozhuanqianwangyoujiantouxiangyouxiayibuxianxing"></li>
+            </div>
+        </div>
+    </div>
+    <div class="tuijian">
+        <div class="tuijianBoxTemplate">
+            <!--列表模板引擎插入-->
+            <div class="layui-tpl" id="viewTemplate"></div>
+        </div>
+    </div>
+
+    <!--新闻-->
+    <div class="row" style="margin-right: 0;">
+        <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
+            <div class="section-title text-center mt-50 mb-50">
+                <h3>新闻展示</h3>
+            </div>
+        </div>
+    </div>
+    <div class="viedo">
+        <!--列表模板引擎插入-->
+        <div class="layui-tpl" id="viewReport"></div>
+    </div>
+
+    <!--底部-->
+    <div id="footer"></div>
+</main>
+<!-- main area end -->
+
+<!-- 回到顶部 -->
+<div class="material-scrolltop"></div>
+<!--产品展示模板-->
+<script id="demoProduct" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="tuijian-box" id="btnListProduct" data-id="{{item.id}}">
+        <div class="tuijian-box-pic">
+            <img src="{{item.thumb}}" alt="">
+        </div>
+
+        <p class="tuijian-name-prize">
+            {{item.product_name}}
+        </p>
+
+    </div>
+    {{#  }); }}
+    {{#  if(d.length === 0){ }}
+    无数据
+    {{#  } }}
+</script>
+<!--模板展示模板-->
+<script id="demoTemplate" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="tuijian-box" id="btnListTemplate" data-id="{{item.id}}">
+        <div class="tuijian-box-pic">
+            <img src="{{item.thumb}}" alt="">
+        </div>
+        <!--<div class="tuijian-name">-->
+            <!--{{item.title}}-->
+        <!--</div>-->
+        <p class="tuijian-name-prize">
+            {{item.template_name}}
+        </p>
+        <!--<p class="tuijian-praise">-->
+            <!--{{item.title}}-->
+        <!--</p>-->
+    </div>
+    {{#  }); }}
+    {{#  if(d.length === 0){ }}
+    无数据
+    {{#  } }}
+</script>
+<!--新闻展示模板-->
+<script id="demoReport" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="viedo-box" id="btnListReport" data-id="{{item.id}}">
+        <div class="viedo-box-img">
+
+            <img src="{{item.thumb}}" alt="">
+
+        </div>
+        <p class="viedo-box-name">{{item.title}}</p>
+        <!--<p class="viedo-box-int">{{item.title}}</p>-->
+    </div>
+    {{#  }); }}
+    {{#  if(d.length === 0){ }}
+    无数据
+    {{#  } }}
+</script>
+<!-- js here -->
+<script src="assets/js/modernizr-3.5.0.min.js"></script>
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/meanmenu.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/counterup.min.js"></script>
+<script src="assets/js/scrolltop.js"></script>
+<script src="assets/js/ajax-form.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/swiper.min.js"></script>
+<script src="assets/layui/layui.js"></script>
+<script src="assets/utils/apiconfig.js"></script>
+<script src="assets/js/index/index.js"></script>
+<script>
+    //获取图片轮播图
+    $.ajax({
+        url: urls.getLunbo,
+        type: 'POST',
+        data: {},
+        dataType: 'JSON',
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (res) {
+            if (res.code === 1) {
+                var b = '';
+                for (var i = 0; i < res.data.length; i++) {
+                    b += `<div class="swiper-slide">
+                            <div class="full preload middle">
+                                <img src="${res.data[i].url}" id="${res.data[i].id}" value="${res.data[i].type}">
+                            </div>
+                        </div>`;
+                }
+                $('.swiper-container .swiper-wrapper').html(b);
+                var swiper = new Swiper('.swiper-container', {
+                    effect: 'fade',/*'fade'cube'flip*/
+                    fadeEffect: {/*逐渐变小*/
+                        crossFade: true,
+                    },
+                    observer: true,
+                    observerParent: true,
+                    autoHeight: true, //高度随内容变化
+                    roundLengths: true,
+                    setWrapperSize: true,
+                    speed: 1000,
+                    grabCursor: true,/*变手*/
+                    autoplay: {
+                        delay: 3000
+                    },
+                    loop: true,
+                    height: 500,
+                    lazy: {
+                        loadPrevNext: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                });
+                //点击图片跳转
+                $(".swiper-wrapper").on("click", '.swiper-slide', function (e) {
+                    var typeLocal = e.target.attributes.value.value
+                    var ids = e.target.id;
+                        if(typeLocal == 0 || typeLocal == 3){
+                            location.href = `reportDetails.html?id=${ids}`
+                        }else if (typeLocal == 1){
+                            location.href = `productDetails.html?id=${ids}`
+                        } else if (typeLocal == 2){
+                            location.href = `templateDetails.html?id=${ids}`
+                        }else{
+                            return
+                        }
+                })
+            }
+        }
+    })
+    $(window).resize(function () {
+        homeResize();
+    });
+    homeResize();
+
+    function homeResize() {
+
+        WinHeight = $(window).height();
+        WinWidth = $(window).width();
+        fullBox = $(".swiper-slide .full");
+
+        if (WinWidth > 768) {
+            if (WinWidth / WinHeight > 1.6) {
+                fullBox.width("100%").height(WinWidth * 0.625).css({
+                    "position": 'absolute',
+                    "left": "0px",
+                    "top": (WinHeight - fullBox.height()) / 2 + "px"
+                });
+            } else {
+                fullBox.width(WinHeight * 1.6).height("100%").css({
+                    "position": 'absolute',
+                    "left": "-" + (fullBox.width() - WinWidth) / 2 + "px",
+                    "top": "0px"
+                });
+            }
+        } else {
+            fullBox.width("100%").height("auto").css({
+                "position": 'static',
+            });
+        }
+    }
+</script>
+</body>
+
+</html>

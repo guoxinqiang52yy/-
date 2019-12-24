@@ -1,0 +1,151 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>产品</title>
+    <meta name="keywords" content="Corporate Business Shopse HTML5 Css3 Template App Product"/>
+    <meta name="description" content="Apork - Product Landing HTML5 Template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- css here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/scrolltop.css">
+    <link rel="stylesheet" href="assets/css/default.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/swiper/index.css">
+    <link rel="stylesheet" href="assets/layui/css/layui.css">
+</head>
+
+<body>
+
+<!--[if lte ie 9]>
+<p class="browserupgrade">you are using an <strong>outdated</strong> browser. please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- preloaders start -->
+<div class="preloader">
+    <div class="loader">Loading...</div>
+</div>
+<!-- preloaders end -->
+<div id="header"></div>
+
+<!-- 主体 -->
+<main>
+    <!-- 面包屑 -->
+    <div>
+        <ul class="breadcrumb justify-content-left">
+            <li class="breadcrumb-item"><a href="index.html" title="Home">首页</a></li>
+            <li class="breadcrumb-item active">产品列表</li>
+        </ul>
+    </div>
+
+    <!-- 分类 -->
+    <div id="appnox-faq-area" class="appnox-faq-area mt-10 mb-10">
+        <div class="container">
+            <div class="row" style="margin-right: 0;">
+                <!-- 选择 -->
+                <div class="option">
+                    <div class="option-list">
+                        <span>已选分类</span>
+                        <ul>
+                            <li class="selectClass">暂未选择</li>
+                        </ul>
+                    </div>
+                    <div class="option-list">
+                        <span>选择分类</span>
+                        <ul>
+                            <!--模板引擎插入-->
+                            <div class="layui-tpl" id="viewClassList"></div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--列表-->
+    <div class="row" style="margin-right: 0;">
+        <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
+            <div class="section-title text-center mb-50">
+                <h3>产品列表</h3>
+            </div>
+        </div>
+    </div>
+    <div class="viedo">
+        <!--列表模板引擎插入-->
+        <div class="layui-tpl" id="viewIDList"></div>
+    </div>
+    <!--分页-->
+    <div class="pageBox">
+        <div id="pageNav"></div>
+    </div>
+    <!--底部-->
+    <div id="footer"></div>
+</main>
+<!-- 回到顶部 -->
+<div class="material-scrolltop"></div>
+<!--分类列表-->
+<script id="demoClassList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <li class="addOpen1" id="{{item.id}}">{{item.type_name}}</li>
+    {{#  }); }}
+</script>
+<!--分类二级列表-->
+<script id="demoClassListModel" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <li class="ClassListModel" id="{{item.id}}">{{item.type_name}}</li>
+    {{#  }); }}
+</script>
+<!--点击分类的弹框-->
+<script type="text/html" id="modelUser">
+    <div class="option">
+        <div class="option-list">
+            <ul class="addOpen">
+                <div class="layui-tpl" id="viewClassListModel"></div>
+            </ul>
+        </div>
+    </div>
+</script>
+<!--模板引擎-列表-->
+<script id="demoList" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="viedo-box" id="btnDetails" data-id="{{item.id}}">
+        <div class="viedo-box-img">
+            <img src="{{item.thumb}}" alt="">
+        </div>
+        <p class="viedo-box-name">{{item.product_name}}</p>
+    </div>
+    {{#  }); }}
+    {{#  if(d.length === 0){ }}
+    无数据
+    {{#  } }}
+</script>
+<!-- js here -->
+<script src="assets/js/modernizr-3.5.0.min.js"></script>
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/meanmenu.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/counterup.min.js"></script>
+<script src="assets/js/scrolltop.js"></script>
+<script src="assets/js/ajax-form.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/layui/layui.js"></script>
+<script src="assets/utils/apiconfig.js"></script>
+<script src="assets/js/product/product.js"></script>
+</body>
+</html>
