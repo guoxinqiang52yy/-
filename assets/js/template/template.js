@@ -1,5 +1,5 @@
 var typeId, modelId
-$(function () {
+$(function ($) {
     $("#header").load("common/header.html")
     $("#footer").load("common/footer.html")
     layui.use(['layer', 'laypage', 'laytpl'], function () {
@@ -8,6 +8,7 @@ $(function () {
         var laytpl = layui.laytpl
         cartgoryFunction()
         cartgoryFunction1()
+        goDetailsFunction()
 
         /*渲染分类列表*/
         function cartgoryFunction() {
@@ -190,7 +191,7 @@ $(function () {
                 elem: 'pageNav'
                 , count: 10
                 , curr: page
-                ,theme:'#000'
+                , theme: '#000'
                 , layout: ['prev', 'page', 'next']
                 , jump: function (obj) {
                     page = obj.curr;
@@ -235,17 +236,49 @@ $(function () {
         }
 
         ajaxPage(1)
-        goDetailsFunction()
+
+        /*点击模板进去详情*/
+        function goDetailsFunction() {
+            // 点击每条数据
+            $(".layui-tpl").on("mouseenter", '.viedo-box', function (e) {
+                var ids = e.currentTarget.id;
+                if (ids !== undefined) {
+                    $(".layui-tpl .viedo-box").click(function () {
+                        event.stopPropagation();
+                        location.href = `templateDetails.html?id=${ids}`
+
+                    })
+                    $(".layui-tpl .viedo-box-int").click(function () {
+                        event.stopPropagation();
+                        if (sessionStorage.getItem("dataTokencode")) {
+                            $.ajax({
+                                url: `${urls.templateDownload}?id=${ids}&tokencode=${sessionStorage.getItem("dataTokencode")}`,
+                                type: 'get',
+                                data: {},
+                                dataType: 'JSON',
+                                contentType: 'application/x-www-form-urlencoded',
+                                success: function (res) {
+                                    if (res.code === 1) {
+                                        var a = document.createElement('a');
+                                        a.href = `${res.data}`
+                                        $('body').append(a);
+                                        a.click();
+                                        $(a).remove();
+                                    } else {
+                                        layer.msg(res.msg, {icon: 2, time: 1000})
+                                    }
+                                }
+                            })
+                        } else {
+                            layer.msg("请登录", {icon: 1, time: 1000})
+                        }
+                    })
+                } else {
+                    return
+                }
+            })
+        }
     })
 })
 
 
-/*点击模板进去详情*/
-function goDetailsFunction() {
-    // 点击每条数据
-    $("#viewIDList").on("click", '.viedo-box', function (e) {
-        var ids = $(e.target).parents('.viedo-box').data('id');
-        location.href = `templateDetails.html?id=${ids}`
-        // showEditModel1(ids);
-    })
-}

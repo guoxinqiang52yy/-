@@ -118,14 +118,14 @@
 <script id="demoProduct" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="tuijian-box" id="btnListProduct" data-id="{{item.id}}">
-        <div class="tuijian-box-pic">
-            <img src="{{item.thumb}}" alt="">
+        <div id="{{item.id}}">
+            <div class="tuijian-box-pic">
+                <img src="{{item.thumb}}" alt="">
+            </div>
+            <p class="tuijian-name-prize">
+                {{item.product_name}}
+            </p>
         </div>
-
-        <p class="tuijian-name-prize">
-            {{item.product_name}}
-        </p>
-
     </div>
     {{#  }); }}
     {{#  if(d.length === 0){ }}
@@ -135,19 +135,18 @@
 <!--模板展示模板-->
 <script id="demoTemplate" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="tuijian-box" id="btnListTemplate" data-id="{{item.id}}">
-        <div class="tuijian-box-pic">
-            <img src="{{item.thumb}}" alt="">
+    <div class="tuijian-box" id="btnListTemplate">
+        <div id="{{item.id}}">
+            <div class="tuijian-box-pic">
+                <img src="{{item.thumb}}" alt="">
+            </div>
+            <!--<div class="tuijian-name">-->
+            <!--{{item.title}}-->
+            <!--</div>-->
+            <p class="tuijian-name-prize">
+                {{item.template_name}}
+            </p>
         </div>
-        <!--<div class="tuijian-name">-->
-        <!--{{item.title}}-->
-        <!--</div>-->
-        <p class="tuijian-name-prize">
-            {{item.template_name}}
-        </p>
-        <!--<p class="tuijian-praise">-->
-        <!--{{item.title}}-->
-        <!--</p>-->
     </div>
     {{#  }); }}
     {{#  if(d.length === 0){ }}
@@ -157,14 +156,11 @@
 <!--新闻展示模板-->
 <script id="demoReport" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
-    <div class="viedo-box" id="btnListReport" data-id="{{item.id}}">
+    <div class="viedo-box" id="{{item.id}}">
         <div class="viedo-box-img">
-
             <img src="{{item.thumb}}" alt="">
-
         </div>
         <p class="viedo-box-name">{{item.title}}</p>
-        <!--<p class="viedo-box-int">{{item.title}}</p>-->
     </div>
     {{#  }); }}
     {{#  if(d.length === 0){ }}

@@ -35,6 +35,8 @@ var urls = {
     productDetail: url +'index.php/portal/product/productDetail',
     //模板详情页
     templateDetail: url +'index.php/portal/template/templateDetail',
+    //模板下载
+    templateDownload:url +'index.php/portal/template/downTemplate',
     //新闻详情页
     newsDetail: url +'index.php/portal/news/newsDetail',
 };

@@ -53,7 +53,9 @@ $(function () {
 /*点击模板进去详情*/
 function goDetailsFunction() {
     $("#viewIDList").on("click", '.viedo-box', function (e) {
-        var ids = $(e.target).parents('.viedo-box').data('id');
-        location.href = `reportDetails.html?id=${ids}`
+        var ids = e.currentTarget.id;
+        if (ids){
+            location.href = `reportDetails.html?id=${ids}`
+        }
     })
 }

@@ -12,12 +12,12 @@ $(function ($) {
         gotemplateDetailsFunction()
         goreportDetailsFunction()
         templatelook()
-        productlook()
+
     })
 })
 
 //产品展示左右切换
-function productlook() {
+function productlook(lengthList) {
     let tuijianBox4 = document.querySelector(".tuijianBox");
     let left4 = document.querySelector(".zuoyou i");
     let right4 = document.querySelector(".zuoyou li");
@@ -28,7 +28,7 @@ function productlook() {
 }
 
 //模板展示左右切换
-function templatelook() {
+function templatelook(lengthList1) {
     let tuijianBox4 = document.querySelector(".tuijianBoxTemplate");
     let left4 = document.querySelector(".zuoyouTemplate i");
     let right4 = document.querySelector(".zuoyouTemplate li");
@@ -75,7 +75,8 @@ function productFuntion(laytpl) {
                 laytpl(getTpl).render(list, function (html) {
                     view.innerHTML = html;
                 });
-                lengthList = $("#btnListProduct").parent().children().length;
+                lengthList = $(".tuijian-box").parent().children().length;
+                productlook(lengthList)
             }
 
         }
@@ -102,6 +103,7 @@ function templateFunction(laytpl) {
                     view.innerHTML = html;
                 });
                 lengthList1 = $("#btnListTemplate").parent().children().length;
+                templatelook(lengthList1)
             }
         }
     })
@@ -135,8 +137,10 @@ function reportFuntion(laytpl) {
 function goDetailsFunction() {
     // 点击每条数据
     $("#viewProduct").on("click", '.tuijian-box', function (e) {
-        var ids = $(e.target).parents('.tuijian-box').data('id');
-        location.href = `productDetails.html?id=${ids}`
+        var ids = e.target.id;
+        if (ids){
+            location.href = `productDetails.html?id=${ids}`
+        }
     })
 }
 
@@ -144,7 +148,7 @@ function goDetailsFunction() {
 function gotemplateDetailsFunction() {
     // 点击每条数据
     $("#viewTemplate").on("click", '.tuijian-box', function (e) {
-        var ids = $(e.target).parents('.tuijian-box').data('id');
+        var ids = e.target.id;
         location.href = `templateDetails.html?id=${ids}`
     })
 }
@@ -153,7 +157,7 @@ function gotemplateDetailsFunction() {
 function goreportDetailsFunction() {
     // 点击每条数据
     $("#viewReport").on("click", '.viedo-box', function (e) {
-        var ids = $(e.target).parents('.viedo-box').data('id');
+        var ids = e.currentTarget.id;
         location.href = `reportDetails.html?id=${ids}`
     })
 }

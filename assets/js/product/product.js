@@ -150,12 +150,12 @@ $(function () {
 
 /*点击产品进去详情*/
 function goDetailsFunction() {
-
     // 点击每条数据
     $("#viewIDList").on("click", '.viedo-box', function (e) {
-        var ids = $(e.target).parents('.viedo-box').data('id');
-        location.href = `productDetails.html?id=${ids}`
-        // showEditModel1(ids);
+        var ids = e.currentTarget.id;
+        if (ids){
+            location.href = `productDetails.html?id=${ids}`
+        }
     })
 }
 
