@@ -6,9 +6,11 @@ $(function ($) {
         var layer = layui.layer
         var laypage = layui.laypage;
         var laytpl = layui.laytpl
+        var total
         cartgoryFunction()
         cartgoryFunction1()
         goDetailsFunction()
+        goodsList(1, 0, 0)
 
         /*渲染分类列表*/
         function cartgoryFunction() {
@@ -116,13 +118,13 @@ $(function ($) {
                                         $(".selectClass").text(`${parentsText} / ${e.target.innerText}`)
                                         typeId = e.target.id
                                         if (modelId) {
-                                            ajaxPage(1, typeId, modelId)
+                                            goodsList(1, typeId, modelId)
                                             layer.closeAll()
                                         } else {
                                             layer.msg("请选择型号", {icon: 1, time: 1000})
                                             setTimeout(function () {
                                                 layer.closeAll()
-                                            }, 1500)
+                                            }, 1000)
                                         }
                                     })
                                 }
@@ -168,13 +170,13 @@ $(function ($) {
                                         $(".selectCode").text(`${parentsText} / ${e.target.innerText}`)
                                         modelId = e.target.id
                                         if (typeId) {
-                                            ajaxPage(1, typeId, modelId)
+                                            goodsList(1, typeId, modelId)
                                             layer.closeAll()
                                         } else {
-                                            layer.msg("请选择型号", {icon: 1, time: 1000})
+                                            layer.msg("请选择分类", {icon: 1, time: 1000})
                                             setTimeout(function () {
                                                 layer.closeAll()
-                                            }, 1500)
+                                            }, 1000)
                                         }
                                     })
                                 }
@@ -186,23 +188,25 @@ $(function ($) {
         }
 
         //模板列表分页
-        function ajaxPage(page, typeId, modelId) {
+        function ajaxPage(page, typeId, modelId, total) {
             laypage.render({
                 elem: 'pageNav'
-                , count: 10
+                , count: total
                 , curr: page
+                , limit: 12
                 , theme: '#000'
                 , layout: ['prev', 'page', 'next']
-                , jump: function (obj) {
+                , jump: function (obj, first) {
                     page = obj.curr;
-                    goodsList(page, typeId, modelId, obj)
+                    if (!first) {
+                        goodsList(obj.curr, typeId, modelId)
+                    }
                 }
             });
-
         }
 
         /*渲染模板列表*/
-        function goodsList(page, typeId, modelId, obj) {
+        function goodsList(page, typeId, modelId) {
             $.ajax({
                 url: urls.templateList,
                 type: 'POST',
@@ -215,14 +219,15 @@ $(function ($) {
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (res) {
                     if (res.code === 1) {
+                        total = res.count
+                        ajaxPage(page, typeId, modelId, total)
                         var list = res.data;
                         if (list === '') {
                             list = []
                         } else {
-                            var thisData = list.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
                             var getTpl = demoList.innerHTML
                                 , view = document.getElementById('viewIDList');
-                            laytpl(getTpl).render(thisData, function (html) {
+                            laytpl(getTpl).render(list, function (html) {
                                 view.innerHTML = html;
                             });
                         }
@@ -235,44 +240,13 @@ $(function ($) {
             })
         }
 
-        ajaxPage(1)
-
         /*点击模板进去详情*/
         function goDetailsFunction() {
             // 点击每条数据
-            $(".layui-tpl").on("mouseenter", '.viedo-box', function (e) {
+            $(".layui-tpl").on("click", '.viedo-box', function (e) {
                 var ids = e.currentTarget.id;
                 if (ids !== undefined) {
-                    $(".layui-tpl .viedo-box").click(function () {
-                        event.stopPropagation();
-                        location.href = `templateDetails.html?id=${ids}`
-
-                    })
-                    $(".layui-tpl .viedo-box-int").click(function () {
-                        event.stopPropagation();
-                        if (sessionStorage.getItem("dataTokencode")) {
-                            $.ajax({
-                                url: `${urls.templateDownload}?id=${ids}&tokencode=${sessionStorage.getItem("dataTokencode")}`,
-                                type: 'get',
-                                data: {},
-                                dataType: 'JSON',
-                                contentType: 'application/x-www-form-urlencoded',
-                                success: function (res) {
-                                    if (res.code === 1) {
-                                        var a = document.createElement('a');
-                                        a.href = `${res.data}`
-                                        $('body').append(a);
-                                        a.click();
-                                        $(a).remove();
-                                    } else {
-                                        layer.msg(res.msg, {icon: 2, time: 1000})
-                                    }
-                                }
-                            })
-                        } else {
-                            layer.msg("请登录", {icon: 1, time: 1000})
-                        }
-                    })
+                    location.href = `templateDetails.html?id=${ids}`
                 } else {
                     return
                 }

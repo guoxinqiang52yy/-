@@ -7,8 +7,7 @@ $(function () {
         var laypage = layui.laypage;
         var laytpl = layui.laytpl;
         var layer = layui.layer
-
-        ajaxPage()
+        var total
         cartgoryFunction()
         /*渲染分类列表*/
         function cartgoryFunction() {
@@ -46,22 +45,26 @@ $(function () {
             })
         }
         /*分页*/
-        function ajaxPage(page, idList) {
+        function ajaxPage(page, idList,total) {
             laypage.render({
                 elem: 'pageNav'
-                , count: 10
+                , limit: 12
                 , curr: page
+                ,count:total
                 ,theme:'#000'
                 , layout: ['prev', 'page', 'next']
-                , jump: function (obj) {
+                , jump: function (obj,first) {
                     page = obj.curr;
-                    goodsList(page, idList, obj)
+                    if (!first){
+                        goodsList(obj.curr, idList)
+                    }
+
                 }
             });
         }
 
         /*渲染产品列表*/
-        function goodsList(page, idList, obj) {
+        function goodsList(page, idList) {
             $.ajax({
                 url: urls.productList,
                 type: 'POST',
@@ -73,14 +76,16 @@ $(function () {
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (res) {
                     if (res.code === 1) {
+
+                        total = res.count
+                        ajaxPage(page,idList,total)
                         var list = res.data;
                         if (list === '') {
                             list = []
                         } else {
-                            var thisData = list.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
                             var getTpl = demoList.innerHTML
                                 , view = document.getElementById('viewIDList');
-                            laytpl(getTpl).render(thisData, function (html) {
+                            laytpl(getTpl).render(list, function (html) {
                                 view.innerHTML = html;
                             });
                         }
@@ -127,7 +132,7 @@ $(function () {
                                     $(".ClassListModel").click(function (e) {
                                         $(".selectClass").text(`${parentsText} / ${e.target.innerText}`)
                                         typeId = e.target.id
-                                        ajaxPage(1, typeId)
+                                        goodsList(1, typeId)
                                         layer.closeAll()
                                     })
                                 }
@@ -137,6 +142,7 @@ $(function () {
                 }
             })
         }
+        goodsList(1, 0)
     })
     goDetailsFunction()
 })

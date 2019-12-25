@@ -5,47 +5,55 @@ $(function () {
         var layer = layui.layer
         var laypage = layui.laypage;
         var laytpl = layui.laytpl
-        ajaxPage(1)
-
+        var page = 1;
+        var total
         //模板列表分页
-        function ajaxPage(page) {
+        function ajaxPage(page,count) {
             laypage.render({
                 elem: 'pageNav'
-                , count: 10
+                , count: count
                 , curr: page
+                , limit: 12
                 ,theme:'#000'
                 , layout: ['prev', 'page', 'next']
-                , jump: function (obj) {
+                , jump: function (obj,first) {
                     page = obj.curr;
-                    goodsList(obj)
+                    //首次不执行
+                    if(!first){
+                        goodsList(obj.curr)
+                    }
                 }
             });
         }
 
         /*渲染*/
-        function goodsList(obj) {
+        function goodsList(page) {
             $.ajax({
                 url: urls.newsList,
                 type: 'POST',
-                data: {},
+                data: {
+                    page:page
+                },
                 dataType: 'JSON',
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (res) {
                     if (res.code === 1) {
+                        total = res.count
+                        ajaxPage(page,total)
                         var list = res.data;
                         if (list === '') {
                             list = []
                         }
-                        var thisData = list.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
                         var getTpl = demoList.innerHTML
                             , view = document.getElementById('viewIDList');
-                        laytpl(getTpl).render(thisData, function (html) {
+                        laytpl(getTpl).render(list, function (html) {
                             view.innerHTML = html;
                         });
                     }
                 }
             })
         }
+        goodsList(1)
         goDetailsFunction()
     })
 })
