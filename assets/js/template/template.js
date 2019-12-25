@@ -252,6 +252,12 @@ $(function ($) {
                 }
             })
         }
+        //选择全部
+        $(".selectClassAll").click(function(){
+            $(".selectClass").text("暂未选择")
+            $(".selectCode").text("暂未选择")
+            goodsList(1, 0,0)
+        })
     })
 })
 

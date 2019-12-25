@@ -21,7 +21,7 @@ function productlook(lengthList) {
     let tuijianBox4 = document.querySelector(".tuijianBox");
     let left4 = document.querySelector(".zuoyou i");
     let right4 = document.querySelector(".zuoyou li");
-    let width4 = tuijianBox4.offsetWidth / 4;
+    let width4 = tuijianBox4.offsetWidth / 2;
     if (lengthList > 5) {
         leftRightFunction(right4, left4, width4, tuijianBox4)
     }
@@ -32,7 +32,7 @@ function templatelook(lengthList1) {
     let tuijianBox4 = document.querySelector(".tuijianBoxTemplate");
     let left4 = document.querySelector(".zuoyouTemplate i");
     let right4 = document.querySelector(".zuoyouTemplate li");
-    let width4 = tuijianBox4.offsetWidth / 4;
+    let width4 = tuijianBox4.offsetWidth / 2;
     if (lengthList1 > 5) {
         leftRightFunction(right4, left4, width4, tuijianBox4)
     }
@@ -42,8 +42,8 @@ function leftRightFunction(right, left, width, box) {
     let nums1 = 0;
     right.onclick = function () {
         nums1++;
-        if (nums1 == 4) {
-            nums1 = 3;
+        if (nums1 == 2) {
+            nums1 = 1;
         }
         box.style.transform = `translateX(${-width * nums1}px)`;
     }

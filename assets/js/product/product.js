@@ -142,6 +142,10 @@ $(function () {
                 }
             })
         }
+        $(".selectClassAll").click(function(){
+            $(".selectClass").text("暂未选择")
+            goodsList(1, 0)
+        })
         goodsList(1, 0)
     })
     goDetailsFunction()

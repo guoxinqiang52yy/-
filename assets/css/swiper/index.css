@@ -12,14 +12,11 @@
 
 /*分页*/
 .pageBox {
-    width: 1240px;
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 50px;
-}
-
-#pageNav {
-    margin-left: 250px;
 }
 
 /* 产品 */
@@ -56,7 +53,7 @@
     font-weight: 700;
 }
 .tuijianBox,.tuijianBoxTemplate {
-    width: 4960px;
+    width: 2480px;
     height: 300px;
     position: absolute;
     left: 0;
@@ -343,6 +340,10 @@
     justify-content: flex-start;
     margin-top: 10px;
 }
+.option-list ul{
+    display: flex;
+    flex-wrap: wrap;
+}
 .option-list > span {
     display: inline-block;
     height: 43px;
@@ -387,4 +388,9 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+.activeCatgray{
+    background-color: rgb(255,39,130);
+    color: #fff;
+    border: 2px solid #f5f5f5;
 }
