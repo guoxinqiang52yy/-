@@ -3,10 +3,12 @@ $(function () {
     $("#header").load("common/header.html")
     $("#footer").load("common/footer.html")
 
-    layui.use(['laypage', 'laytpl', 'layer'], function () {
+    layui.use(['laypage', 'laytpl', 'layer','flow'], function () {
         var laypage = layui.laypage;
         var laytpl = layui.laytpl;
         var layer = layui.layer
+        var flow = layui.flow;
+        flow.lazyimg();
         var total
         cartgoryFunction()
         /*渲染分类列表*/

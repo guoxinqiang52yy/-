@@ -1,8 +1,10 @@
 $(function () {
-    layui.use(['form', 'jquery', 'layer'], function () {
+    layui.use(['form', 'jquery', 'layer','flow'], function () {
         var $ = layui.jquery;
         var form = layui.form;
         var layer = layui.layer
+        var flow = layui.flow;
+        flow.lazyimg();
         form.render();
         clearSession()
         //添加表单验证方法

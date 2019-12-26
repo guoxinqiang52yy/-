@@ -1,8 +1,10 @@
 var lengthList,lengthList1
 $(function ($) {
-    layui.use(['laytpl', 'layer', 'carousel'], function () {
+    layui.use(['laytpl', 'layer', 'carousel','flow'], function () {
         var layer = layui.layer
         var laytpl = layui.laytpl
+        var flow = layui.flow;
+        flow.lazyimg();
         $("#header").load("common/header.html")
         $("#footer").load("common/footer.html")
         productFuntion(laytpl)

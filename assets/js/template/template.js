@@ -2,10 +2,12 @@ var typeId, modelId
 $(function ($) {
     $("#header").load("common/header.html")
     $("#footer").load("common/footer.html")
-    layui.use(['layer', 'laypage', 'laytpl'], function () {
+    layui.use(['layer', 'laypage', 'laytpl','flow'], function () {
         var layer = layui.layer
         var laypage = layui.laypage;
         var laytpl = layui.laytpl
+        var flow = layui.flow;
+        flow.lazyimg();
         var total
         cartgoryFunction()
         cartgoryFunction1()
