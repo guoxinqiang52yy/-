@@ -24,7 +24,29 @@
     <link rel="stylesheet" href="assets/css/swiper/index.css">
     <link rel="stylesheet" href="assets/layui/css/layui.css">
 </head>
+<style>
+    .viedo-box {
+        width: 1240px;
+        min-height: 285px;
+        margin: 14px auto;
+        background: #ffffff;
+        float: left;
+        padding: 10px 20px;
+        border: 1px solid #f5f5f5;
+        border-radius: 3px;
+        z-index: 10 !important;
+        display: flex;
+        justify-content: space-between;
+    }
 
+    .viedo-box-img {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
 <body>
 
 <!--[if lte ie 9]>
@@ -120,10 +142,13 @@
 <script id="demoList" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="viedo-box" id="{{item.id}}">
+        <div class="list_mode">
+            <p class="viedo-box-name">{{item.product_name}}</p>
+            <p class="viedo-box-name">{{item.info}}</p>
+        </div>
         <div class="viedo-box-img">
             <img lay-src="{{item.thumb}}" alt="">
         </div>
-        <p class="viedo-box-name">{{item.product_name}}</p>
     </div>
     {{#  }); }}
     {{#  if(d.length === 0){ }}

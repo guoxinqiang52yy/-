@@ -7,14 +7,53 @@
     .header-top-btn span {
         font-weight: 600;
     }
-    .header-top-right,header-top-btn{
+
+    .header-top-right, .header-top-btn {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    #tab2 li{
+
+    ul.header-search {
+        margin: 0 20px 0 0;
+        display: inline-block;
+        font-size: 20px;
+    }
+
+    #tab2 li {
         width: 100px;
         text-align: center;
+    }
+
+    .search-form-centered {
+        color: #000;
+    }
+
+    .search-form button {
+        top: 0;
+        right: 0;
+    }
+
+    .layui-form-select .layui-input {
+        border-radius: 3.25rem;
+        height: 60px;
+        padding-left: 30px;
+        color: #ff60a3;
+    }
+
+    .layui-form-select dl {
+        top: 60px;
+    }
+
+    .search-form input.form-control {
+        height: 60px;
+        padding-left: 138px;
+    }
+
+    .layui-form-select {
+        position: absolute;
+        top: 0;
+        width: 14%;
     }
 </style>
 <header>
@@ -28,7 +67,8 @@
                     </div>
                 </div>
                 <!-- main menu area start -->
-                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9" style="display: flex;justify-content:space-between;align-items: center;padding-left: 100px">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9"
+                     style="display: flex;justify-content:space-between;align-items: center;padding-left: 100px">
 
                     <!--导航-->
                     <div class="main-menu-area float-right">
@@ -36,31 +76,20 @@
                             <nav id="mobile-menu">
                                 <ul id="tab2">
                                     <li><a href="index.html">首页</a></li>
-                                    <li><a href="product.html">产品
-                                        <!--<i class="fa fa-angle-down"></i>-->
-                                    </a>
-                                        <!--<ul class="sub-menu text-left">-->
-                                            <!--<li>-->
-                                                <!--<a href="contact.html">联系</a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    </li>
-                                    <li><a href="template.html">模板
-                                        <!--<i class="fa fa-angle-down"></i>-->
-                                    </a>
-                                        <!--<ul class="sub-menu text-left">-->
-                                            <!--<li>-->
-                                                <!--<a href="contact.html">联系</a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    </li>
-                                    <li><a href="report.html">新闻</a></li>
+                                    <li><a href="special_service.html">特拍服务</a></li>
+                                    <li><a href="product.html">产品</a></li>
+                                    <li><a href="template.html">模板</a></li>
+                                    <li><a href="report.html">动态</a></li>
+                                    <li><a class="scroll_bottom" href="javascript:;">联系我们</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-<!--                    <div class="mobile-menu"></div>-->
+                    <!--                    <div class="mobile-menu"></div>-->
                     <div class="header-top-right float-right">
+                        <ul class="header-search">
+                            <li><a id="search-btn" href="javascript:void();"><i class="fa fa-search"></i></a></li>
+                        </ul>
                         <div class="header-top-btn">
                             <a href="login.html" class="btn btn-type-1">登录</a>
                         </div>
@@ -71,16 +100,80 @@
         </div>
     </div>
     <!-- header area end -->
-
+    <div class="search-form-area" id="search-overlay">
+        <div class="search-form-centered">
+            <div id="search-box">
+                <i id="close-btn" class="fa fa-times fa-2x"></i>
+                <form class="search-form layui-form" >
+                    <input class="form-control" lay-filter="aihao_input" placeholder="请输入关键词" type="text">
+                    <select lay-filter="aihao" lay-verify="required">
+                        <option value="1">特拍服务</option>
+                        <option value="2">产品</option>
+                        <option value="3">模板</option>
+                        <option value="4">动态</option>
+                    </select>
+                    <button type="button">
+                        <span>搜索</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </header>
+
 <script>
     $(function () {
+        layui.use(["form", "layer"], function () {
+            var form = layui.form
+            var layer = layui.layer
+            form.render("select")
+            var keyword, datas
+            form.on('select(aihao)', function (data) {
+                console.log(data);
+                if (data.value !== "") {
+                    datas = data.value
+                }
+            })
+            $(".search-form button").click(function () {
+                keyword = $(".form-control").val()
+                if (keyword == "") {
+                    layer.msg("关键词不能为空", {icon: 1, time: 1000})
+                } else {
+                    //特拍服务
+                    if (datas == 1) {
+                        location.href = `special_service.html?id1=${datas}&keyword1=${keyword}`
+                    }
+                    //产品
+                    if (datas == 2) {
+                        location.href = `product.html?id2=${datas}&keyword2=${keyword}`
+                    }
+                    //模板
+                    if (datas == 3) {
+                        location.href = `template.html?id3=${datas}&keyword3=${keyword}`
+                    }
+                    //动态
+                    if (datas == 4) {
+                        location.href = `report.html?id4=${datas}&keyword4=${keyword}`
+                    }
+                }
+            })
+        })
+        //搜索
+        $('#close-btn').on('click', function () {
+            $('#search-overlay').fadeOut();
+            $('#search-btn').show();
+        });
+        $('#search-btn').on('click', function () {
+            $('#search-overlay').fadeIn();
+        });
+        $('.scroll_bottom').click(function () {
+            $('html,body').animate({scrollTop: $('footer').offset().top}, 800);
+        });
         //导航栏选中
         var tDiv = document.getElementById("tab2"),
             links = tDiv.getElementsByTagName("a"),
             index = 0,
             url = location.href.split('?')[0].split('/').pop();
-
         if (url) {
             for (var i = links.length; i--;) {
                 if (links[i].href.indexOf(url) !== -1) {
@@ -88,11 +181,11 @@
                     break;
                 }
             }
+            links[index].className = 'active';
         }
 
-        links[index].className = 'active';
         //    显示登录用户
-        console.log(sessionStorage.getItem("dataTokencode"));
+        // console.log(sessionStorage.getItem("dataTokencode"));
         if (sessionStorage.getItem("dataTokencode")) {
             var r = '', g = '', d = ''
             r += `<div><span>当前登录用户:</span><span>${sessionStorage.getItem("dataUserName")}</span>

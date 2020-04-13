@@ -1,6 +1,6 @@
-var lengthList,lengthList1
+var lengthList, lengthList1
 $(function ($) {
-    layui.use(['laytpl', 'layer', 'carousel','flow'], function () {
+    layui.use(['laytpl', 'layer', 'carousel', 'flow'], function () {
         var layer = layui.layer
         var laytpl = layui.laytpl
         var flow = layui.flow;
@@ -138,18 +138,16 @@ function reportFuntion(laytpl) {
 /*点击产品进去详情*/
 function goDetailsFunction() {
     // 点击每条数据
-    $("#viewProduct").on("click", '.tuijian-box', function (e) {
+    $("#viewProduct").on("click", '.tuijian-boxs', function (e) {
         var ids = e.target.id;
-        if (ids){
-            location.href = `productDetails.html?id=${ids}`
-        }
+        location.href = `productDetails.html?id=${ids}`
     })
 }
 
 /*点击模板进去详情*/
 function gotemplateDetailsFunction() {
     // 点击每条数据
-    $("#viewTemplate").on("click", '.tuijian-box', function (e) {
+    $("#viewTemplate").on("click", '.tuijian-boxs', function (e) {
         var ids = e.target.id;
         location.href = `templateDetails.html?id=${ids}`
     })

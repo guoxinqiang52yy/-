@@ -161,8 +161,8 @@ $(function () {
                     contentType: 'application/x-www-form-urlencoded',
                     success: function (res) {
                         if (res.code === 1) {
-                            sessionStorage.setItem("dataUserName", res.data.user_name);//用户名
-                            sessionStorage.setItem("dataTokencode", res.data.tokencode);//用户名
+                            // sessionStorage.setItem("dataUserName", res.data.user_name);//用户名
+                            // sessionStorage.setItem("dataTokencode", res.data.tokencode);//用户名
                             layer.msg(res.msg, {icon: 1, time: 1000}, function () {
                                 $(".loginBlock").fadeOut(1200).css({"display": "block"})
                                 $(".resginNone").fadeIn(1200).css({"display": "none"})

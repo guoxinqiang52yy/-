@@ -23,8 +23,13 @@
     <link rel="stylesheet" href="assets/css/swiper.min.css">
     <link rel="stylesheet" href="assets/css/swiper/index.css">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1065039_nf6ti5m8z8h.css">
+    <link rel="stylesheet" href="assets/layui/css/layui.css">
 </head>
-
+<style>
+    .tuijian-boxs{
+        height: 100%;
+    }
+</style>
 <body>
 
 <!--[if lte ie 9]>
@@ -98,7 +103,7 @@
     <div class="row" style="margin-right: 0;">
         <div class="col-xl-6 col-lg-6 col-md-10 mx-auto">
             <div class="section-title text-center mt-50 mb-50">
-                <h3>新闻展示</h3>
+                <h3>动态展示</h3>
             </div>
         </div>
     </div>
@@ -118,11 +123,11 @@
 <script id="demoProduct" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="tuijian-box" id="btnListProduct" data-id="{{item.id}}">
-        <div id="{{item.id}}">
+        <div class="tuijian-boxs" id="{{item.id}}">
             <div class="tuijian-box-pic">
-                <img lay-src="{{item.thumb}}" alt="">
+                <img lay-src="{{item.thumb}}" alt="" id="{{item.id}}">
             </div>
-            <p class="tuijian-name-prize">
+            <p class="tuijian-name-prize" id="{{item.id}}">
                 {{item.product_name}}
             </p>
         </div>
@@ -136,14 +141,11 @@
 <script id="demoTemplate" type="text/html">
     {{#  layui.each(d, function(index, item){ }}
     <div class="tuijian-box" id="btnListTemplate">
-        <div id="{{item.id}}">
+        <div class="tuijian-boxs" id="{{item.id}}">
             <div class="tuijian-box-pic">
-                <img lay-src="{{item.thumb}}" alt="">
+                <img lay-src="{{item.thumb}}" alt="" id="{{item.id}}">
             </div>
-            <!--<div class="tuijian-name">-->
-            <!--{{item.title}}-->
-            <!--</div>-->
-            <p class="tuijian-name-prize">
+            <p class="tuijian-name-prize" id="{{item.id}}">
                 {{item.template_name}}
             </p>
         </div>

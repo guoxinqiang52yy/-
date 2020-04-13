@@ -12,8 +12,58 @@ $(function ($) {
         cartgoryFunction()
         cartgoryFunction1()
         goDetailsFunction()
-        goodsList(1, 0, 0)
 
+        //搜索
+        var url = location.search //获取url中"?"符后的字串 ('?modFlag=business&role=1')
+        var theRequest = new Object()
+        var id3, keyword3
+        if (url.indexOf('?') != -1) {
+            var str = url.substr(1) //substr()方法返回从参数值开始到结束的字符串；
+            var strs = str.split('&')
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1]
+            }
+        }
+        if (theRequest.id3 != undefined && theRequest.keyword3 != undefined) {
+            id3 = theRequest.id3
+            keyword3 = theRequest.keyword3
+            var decodedUrl = decodeURIComponent(keyword3);
+            submit_from(id3, decodedUrl)
+        } else {
+            goodsList(1, 0, 0)
+        }
+
+        function submit_from(id, keyword) {
+            $.ajax({
+                url: urls.search,
+                type: 'POST',
+                data: {
+                    id: id,
+                    keyword: keyword,
+                    page: 1
+                },
+                dataType: 'JSON',
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (res) {
+                    if (res.code === 1) {
+                        total = res.count
+                        ajaxPage(1, 0, 0, total)
+                        var list = res.data;
+                        if (list === '') {
+                            list = []
+                        } else {
+                            var getTpl = demoList.innerHTML
+                                , view = document.getElementById('viewIDList');
+                            laytpl(getTpl).render(list, function (html) {
+                                view.innerHTML = html;
+                            });
+                        }
+                    }else{
+                        layer.msg(res.msg, {icon: 1, time: 1000})
+                    }
+                }
+            })
+        }
         /*渲染分类列表*/
         function cartgoryFunction() {
             $.ajax({

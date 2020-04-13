@@ -35,13 +35,13 @@
        		search form Active
        	------------------------------*/
 
-    $('#close-btn').on('click', function () {
-        $('#search-overlay').fadeOut();
-        $('#search-btn').show();
-    });
-    $('#search-btn').on('click', function () {
-        $('#search-overlay').fadeIn();
-    });
+    // $('#close-btn').on('click', function () {
+    //     $('#search-overlay').fadeOut();
+    //     $('#search-btn').show();
+    // });
+    // $('#search-btn').on('click', function () {
+    //     $('#search-overlay').fadeIn();
+    // });
 
     /*----------------------------
     		Counter Active
