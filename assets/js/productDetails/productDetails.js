@@ -31,23 +31,9 @@ function detailsFun() {
                                href="${res.data.video}">
                                 <i class="fa fa-play"></i>
                             </a>`
-                    c += `<div class="imgConCenter"><img src="${res.data.image}" alt=""></div>
-                    <div class="layui-card mt-20">
-                        <div class="layui-card-header">产品名称&nbsp;&nbsp;
-                            <span>${res.data.product_name}</span>
-                        </div>
-                        <div class="layui-card-header">产品简介&nbsp;&nbsp;
-                            <span>${res.data.info}</span>
-                        </div>
-                    </div>`
+                    c += `<p>${res.data.content}</p>`
                     $('.videos-icon-text').html(b);
                     $(".blog-details-content").html(c)
-                    if (res.data.photo_list != null) {
-                        res.data.photo_list.forEach(val => {
-                            w = `<div class="imgConCenter"><img src="${val.url}" alt=""></div>`
-                            $(".blog-details-content").append(w)
-                        })
-                    }
                 }
             }
         })

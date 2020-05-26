@@ -153,12 +153,13 @@
 }
 
 .viedo-box-img img {
+    max-width: 599px;
     height: 100%;
 }
 
 .viedo-box-name {
     font-size: 18px;
-    text-align: center;
+    text-align: left;
     margin-top: 30px;
     font-weight: 600;
 }
